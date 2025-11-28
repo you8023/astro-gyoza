@@ -13,6 +13,8 @@ const postsCollection = defineCollection({
     comments: z.boolean().default(true),
     draft: z.boolean().default(false),
     sticky: z.number().default(0),
+    url: z.string().optional(),
+    words: z.number().default(0),
   }),
 })
 

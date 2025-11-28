@@ -54,7 +54,12 @@ export async function getAllPostsWordCount() {
     return count + cur.remarkPluginFrontmatter.words
   }, 0)
 
-  return wordCount
+  // for outer blog, words calculated according to "words" param
+  const outerWordsCount = allPosts.reduce((sum, post) => {
+    return sum + (post.data.words || 0)
+  }, 0)
+
+  return wordCount + outerWordsCount
 }
 
 // 转换为 URL 安全的 slug，删除点，空格转为短横线，大写转为小写
