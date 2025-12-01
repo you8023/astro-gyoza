@@ -9,6 +9,6 @@ export function ToastContainer() {
 
 function CloseButton({ closeToast }: { closeToast: (event: React.MouseEvent<HTMLElement>) => void }) {
   return <button type="button" aria-label='Close Toast' className='text-lg opacity-50 hover:opacity-100' onClick={closeToast}>
-    <i className='iconfont icon-close'></i>
+    <i className='iconfont icon-close-line'></i>
   </button>
 }

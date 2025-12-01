@@ -29,7 +29,7 @@ export function SearchButton() {
       aria-label="Search"
       onClick={openModal}
     >
-      <i className="iconfont icon-search"></i>
+      <i className="iconfont icon-search-line"></i>
     </button>
   )
 }

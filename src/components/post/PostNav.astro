@@ -15,7 +15,7 @@ const { prev, next, class: className } = Astro.props
     {
       prev && (
         <a class="flex items-baseline gap-2 hover:text-accent" href={`/posts/${prev.slug}`}>
-          <i class="iconfont icon-arrow-left" />
+          <i class="iconfont icon-arrow-left-line" />
           <span>{prev.data.title}</span>
         </a>
       )
@@ -29,7 +29,7 @@ const { prev, next, class: className } = Astro.props
           href={`/posts/${next.slug}`}
         >
           <span>{next.data.title}</span>
-          <i class="iconfont icon-arrow-right" />
+          <i class="iconfont icon-arrow-right-line" />
         </a>
       )
     }

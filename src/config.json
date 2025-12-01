@@ -26,7 +26,7 @@
       },
       {
         "name": "Email",
-        "icon": "icon-mail",
+        "icon": "icon-mail-line",
         "url": "mailto:dubito@foxmail.com",
         "color": "rgb(212, 70, 56)"
       }
@@ -62,27 +62,27 @@
     {
       "name": "首页",
       "link": "/",
-      "icon": "icon-pantone"
+      "icon": "icon-pantone-line"
     },
     {
       "name": "归档",
       "link": "/archives",
-      "icon": "icon-archive"
+      "icon": "icon-archive-line"
     },
     {
       "name": "项目",
       "link": "/projects",
-      "icon": "icon-flask"
+      "icon": "icon-flask-line"
     },
     {
       "name": "关于",
       "link": "/about",
-      "icon": "icon-ghost"
+      "icon": "icon-ghost-line"
     },
     {
       "name": "友链",
       "link": "/friends",
-      "icon": "icon-hearts"
+      "icon": "icon-hearts-line"
     }
   ],
   "posts": {

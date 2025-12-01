@@ -24,7 +24,7 @@ export function ThemeSwitch() {
           aria-label="Switch to light theme"
           onClick={() => setTheme('light')}
         >
-          <i className="iconfont icon-sun"></i>
+          <i className="iconfont icon-sun-line"></i>
         </button>
         <button
           className="size-[32px] flex items-center justify-center"
@@ -32,7 +32,7 @@ export function ThemeSwitch() {
           aria-label="Switch to system theme"
           onClick={() => setTheme('system')}
         >
-          <i className="iconfont icon-computer"></i>
+          <i className="iconfont icon-computer-line"></i>
         </button>
         <button
           className="size-[32px] flex items-center justify-center"
@@ -40,7 +40,7 @@ export function ThemeSwitch() {
           aria-label="Switch to dark theme"
           onClick={() => setTheme('dark')}
         >
-          <i className="iconfont icon-moon"></i>
+          <i className="iconfont icon-moon-line"></i>
         </button>
       </div>
     </div>

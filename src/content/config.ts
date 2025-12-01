@@ -23,8 +23,10 @@ const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    image: z.string(),
+    // image: z.string(),
     link: z.string().url(),
+    info_url: z.string().url(),
+    main_language: z.string(),
   }),
 })
 
@@ -51,5 +53,5 @@ export const collections = {
   posts: postsCollection,
   projects: projectsCollection,
   spec: specCollection,
-  friends: friendsCollection,
+  // friends: friendsCollection,
 }

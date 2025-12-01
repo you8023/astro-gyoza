@@ -31,7 +31,7 @@ function BackToTop() {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
     >
-      <i className="iconfont icon-rocket"></i>
+      <i className="iconfont icon-rocket--line"></i>
     </motion.button>
   )
 }

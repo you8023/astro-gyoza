@@ -15,7 +15,7 @@ interface ShareData {
 const shareList = [
   {
     name: 'Twitter',
-    icon: 'icon-x',
+    icon: 'icon-social_x_line',
     onClick: (data: ShareData) => {
       window.open(
         `https://twitter.com/intent/tweet?url=${encodeURIComponent(data.url)}&text=${encodeURIComponent(data.text)}&via=${encodeURIComponent(site.title)}`,
@@ -67,7 +67,7 @@ function ShareButton() {
       className="size-6 text-xl leading-none hover:text-accent"
       onClick={() => openModal()}
     >
-      <i className="iconfont icon-share"></i>
+      <i className="iconfont icon-share-line"></i>
     </button>
   )
 }
@@ -122,7 +122,7 @@ function DonateButton() {
       className="size-6 text-xl leading-none hover:text-accent"
       onClick={() => openDonate()}
     >
-      <i className="iconfont icon-user-heart"></i>
+      <i className="iconfont icon-user-heart-line"></i>
     </button>
   )
 }

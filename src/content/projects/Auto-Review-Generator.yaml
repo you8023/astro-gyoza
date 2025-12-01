@@ -1,0 +1,5 @@
+title: Auto-Review-Generator
+description: 自动读取本地pdf文献并提取标题、作者、摘要和结论生成综述。
+link: https://github.com/you8023/Auto-Review-Generator
+info_url: https://api.github.com/repos/you8023/Auto-Review-Generator
+main_language: Python

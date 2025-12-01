@@ -4,27 +4,20 @@ description: 这是一份站长的自述报告，请查收。
 comments: false
 ---
 
-## 关于 Gyoza
+## 关于我
 
-Gyoza 是一个使用 Astro 和 React 开发的博客主题。Gyoza 借鉴了 [Shiro](https://github.com/innei/Shiro) 和一些网站的设计。
+你好！我是Dubito。
 
-Gyoza 的核心理念是简洁，快速，可爱。
+Dubito名称源于拉丁语“Dubito, ergo cogito; Cogito, ergo sum”，意为“我怀疑” -> “我思考” -> “我存在”，致敬笛卡尔的“我思故我在”。
 
-- 在 [Markdown 示例](/posts/markdown) 中展示了 Markdown 的渲染样式
-- 可以前往 [Gyoza 使用指南](/posts/guide) 了解 Gyoza 的使用方法
+我是一名网络安全从业者，喜欢研究各种好玩的东西，目前正在探索：
 
-Gyoza 是开源的，如果你对这个项目感兴趣，欢迎前往 Gyoza 的 [Github 仓库](https://github.com/lxchapu/astro-gyoza) 来提 Issue 或者 PR。
+- 云安全
+- 漏洞挖掘
+- 安全开发
 
-## 关于作者
+欢迎与我交流^\_^
 
-我是 lxchapu，是一名前端开发者，喜欢各种有趣的东西。欢迎访问我的个人网站 [www.lxchapu.com](https://www.lxchapu.com)，了解关于我更多的信息。
+## 关于博客
 
-## 致谢
-
-感谢以下项目：
-
-- [Astro](https://astro.build/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Jotai](https://jotai.org/)
+本站基于开源项目[astro-gyoza](https://github.com/lxchapu/astro-gyoza)修改而来，感谢原作者[@lxchapu](https://github.com/lxchapu)开源。
