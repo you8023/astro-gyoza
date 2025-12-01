@@ -1,7 +1,6 @@
 ---
 title: 【漏洞复现】IngressNightmare CVE-2025-1974 RCE漏洞复现
 date: 2025-03-31
-lastMod: 2025-03-31T17:18:11.000Z
 summary: 近期，Ingress-Nginx爆出CVSS评分高达9.8的RCE漏洞，这里对其做了漏洞复现和原理分析。
 category: 安全
 tags: [云安全, 漏洞复现, K8s]
