@@ -53,5 +53,5 @@ export const collections = {
   posts: postsCollection,
   projects: projectsCollection,
   spec: specCollection,
-  // friends: friendsCollection,
+  friends: friendsCollection,
 }
