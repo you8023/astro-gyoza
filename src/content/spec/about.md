@@ -18,6 +18,12 @@ Dubito名称源于拉丁语“Dubito, ergo cogito; Cogito, ergo sum”，意为�
 
 欢迎与我交流^\_^
 
+### 涉足
+
+读万卷书，行万里路。已解锁以下区域：
+
+![](https://blog.dubito.top/go_map.png)
+
 ## 关于博客
 
 本站基于开源项目[astro-gyoza](https://github.com/lxchapu/astro-gyoza)修改而来，感谢原作者[@lxchapu](https://github.com/lxchapu)开源。
