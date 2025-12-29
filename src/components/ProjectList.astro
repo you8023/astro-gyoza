@@ -2,20 +2,124 @@
 import { getCollection } from 'astro:content'
 
 const projects = await getCollection('projects')
+
+async function fetchRepoInfo(repo: string) {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}`)
+    if (!res.ok) {
+      console.warn(
+        `[ProjectList] Failed to fetch info for ${repo}: ${res.status} ${res.statusText}`,
+      )
+      return null
+    }
+    return await res.json()
+  } catch (e: any) {
+    console.warn(`[ProjectList] Failed to fetch info for ${repo}:`, e.message)
+    return null
+  }
+}
+
+const projectsWithStats = await Promise.all(
+  projects.map(async (project) => {
+    const match = project.data.link.match(/github\.com\/([^/]+)\/([^/]+)/)
+    let repo = ''
+    if (match) {
+      repo = `${match[1]}/${match[2]}`
+      // 尝试在编译时获取，如果失败则保留 YAML 中的默认值（如果有）
+      // 注意：开发环境下频繁刷新可能会触发 GitHub API 速率限制
+      if (import.meta.env.PROD) {
+          const info = await fetchRepoInfo(repo)
+          if (info) {
+            project.data.stars = info.stargazers_count
+            project.data.forks = info.forks_count
+          }
+      }
+    }
+    return {
+      ...project,
+      ghRepo: repo,
+    }
+  }),
+)
+const githubLangColors: Record<string, string> = {
+  javascript: '#f1e05a',
+  typescript: '#3178c6',
+  python: '#3572A5',
+  go: '#00ADD8',
+  java: '#b07219',
+  rust: '#dea584',
+  c: '#555555',
+  'c++': '#f34b7d',
+  'c#': '#178600',
+  shell: '#89e051',
+  html: '#e34c26',
+  css: '#563d7c',
+  vue: '#41b883',
+  ruby: '#701516',
+  php: '#4F5D95',
+  kotlin: '#A97BFF',
+  swift: '#F05138',
+  dart: '#00B4AB',
+  markdown: '#000000',
+  'jupyter notebook': '#DA5B0B',
+  powershell: '#012456',
+  scala: '#c22d40',
+  perl: '#0298c3',
+  r: '#198CE7',
+}
+function getLangColor(name?: string) {
+  if (!name) return '#999999'
+  const key = name.toLowerCase()
+  return githubLangColors[key] || '#999999'
+}
+const sortedProjects = projectsWithStats.sort((a, b) => {
+  const ap = a.data.priority
+  const bp = b.data.priority
+  if (ap != null && bp != null) return bp - ap
+  if (ap != null) return -1
+  if (bp != null) return 1
+  const as = a.data.stars ?? 0
+  const bs = b.data.stars ?? 0
+  return bs - as
+})
 ---
 
 <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
   {
-    projects.map((project) => (
+    sortedProjects.map((project) => (
       <li>
-        <a href={project.data.link} target="_blank" rel="noopener noreferrer external">
-          <div class="rounded-lg bg-accent/10 overflow-hidden group">
-            <div class="p-4">
-              <div class="group-hover:text-accent">
+        <a
+          href={project.data.link}
+          target="_blank"
+          rel="noopener noreferrer external"
+          data-gh-repo={project.ghRepo}
+        >
+          <div class="rounded-lg bg-accent/10 overflow-hidden group h-full flex flex-col">
+            <div class="p-4 flex flex-col h-full">
+              <div class="group-hover:text-accent mb-2">
                 <span class="text-xl font-bold">{project.data.title}</span>
                 <i class="ml-2 iconfont icon-external-link-line" />
               </div>
-              <p class="mt-2 text-sm line-clamp-2">{project.data.description}</p>
+              <p class="text-sm line-clamp-2 mb-4 grow">{project.data.description}</p>
+              <div class="mt-2 flex items-center gap-4 text-sm text-secondary">
+                {project.data.main_language && (
+                  <div class="flex items-center gap-1">
+                    <span
+                      class="inline-block size-2 rounded-full"
+                      style={{ backgroundColor: getLangColor(project.data.main_language) }}
+                    />
+                    <span>{project.data.main_language}</span>
+                  </div>
+                )}
+                <div class="flex items-center gap-1">
+                  <i class="iconfont icon-star" />
+                  <span data-gh-stars>{project.data.stars || 0}</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <i class="iconfont icon-git-fork-line" />
+                  <span data-gh-forks>{project.data.forks || 0}</span>
+                </div>
+              </div>
             </div>
           </div>
         </a>
@@ -23,3 +127,30 @@ const projects = await getCollection('projects')
     ))
   }
 </ul>
+
+<script>
+  function updateProjectStats() {
+    const cards = document.querySelectorAll('[data-gh-repo]')
+    cards.forEach(async (card) => {
+      const repo = card.getAttribute('data-gh-repo')
+      if (!repo) return
+      try {
+        const res = await fetch(`https://api.github.com/repos/${repo}`)
+        if (!res.ok) return
+        const data = await res.json()
+        const starEl = card.querySelector('[data-gh-stars]')
+        const forkEl = card.querySelector('[data-gh-forks]')
+        if (starEl) starEl.textContent = data.stargazers_count
+        if (forkEl) forkEl.textContent = data.forks_count
+      } catch (e) {
+        console.warn(`Failed to update stats for ${repo}`)
+      }
+    })
+  }
+
+  // Initial load
+  updateProjectStats()
+
+  // Re-run on swup navigation
+  document.addEventListener('swup:content:replace', updateProjectStats)
+</script>

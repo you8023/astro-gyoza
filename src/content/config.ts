@@ -25,8 +25,10 @@ const projectsCollection = defineCollection({
     description: z.string(),
     // image: z.string(),
     link: z.string().url(),
-    info_url: z.string().url(),
-    main_language: z.string(),
+    main_language: z.string().optional(),
+    stars: z.number().optional(),
+    forks: z.number().optional(),
+    priority: z.number().optional(),
   }),
 })
 
