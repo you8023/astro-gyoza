@@ -86,7 +86,6 @@ export function TocItem({
     if (itemTop < 0 || itemBottom > containerHeight) {
       if (scrollDirection === 'up') {
         $container.scrollTop = itemOffsetTop - containerHeight + itemHeight
-
       } else {
         $container.scrollTop = itemOffsetTop
       }

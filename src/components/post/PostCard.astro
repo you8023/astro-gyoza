@@ -12,7 +12,11 @@ const { entry } = Astro.props
 const { remarkPluginFrontmatter } = await entry.render()
 ---
 
-<a class="block relative py-8 focus-visible:outline-0" href={entry.data.url?entry.data.url:`/posts/${entry.slug}`} target={entry.data.url?'_blank':'_self'}>
+<a
+  class="block relative py-8 focus-visible:outline-0"
+  href={entry.data.url ? entry.data.url : `/posts/${entry.slug}`}
+  target={entry.data.url ? '_blank' : '_self'}
+>
   <PostCardHoverOverlay client:only="react" />
   <h2 class="relative text-2xl font-bold">
     {entry.data.title}
@@ -40,8 +44,10 @@ const { remarkPluginFrontmatter } = await entry.render()
       class="grow"
       date={entry.data.date}
       lastMod={entry.data.lastMod}
-      words={entry.data.words?entry.data.words:remarkPluginFrontmatter.words}
-      readingMinutes={entry.data.words?Math.ceil(entry.data.words/100):remarkPluginFrontmatter.readingMinutes}
+      words={entry.data.words ? entry.data.words : remarkPluginFrontmatter.words}
+      readingMinutes={entry.data.words
+        ? Math.ceil(entry.data.words / 100)
+        : remarkPluginFrontmatter.readingMinutes}
     />
     <div class="group shrink-0 text-accent flex items-center gap-2">
       <span>继续阅读</span>

@@ -24,10 +24,25 @@ const wordCountStr = (wordCount / 1000).toFixed(1) + 'k'
     </div>
     <div class="space-x-1">
       <span>&copy;{copyDate} <Link href="/">{author.name}</Link>.</span>
-      <Link href="/rss.xml" data-no-swup>
-        <i class="iconfont icon-rss"></i>
-        <span>RSS</span>
-      </Link>
+      {
+        (() => {
+          const path = Astro.url.pathname.replace(/\/+$/, '')
+          const segments = path.split('/').filter(Boolean)
+          const isCategory = segments[0] === 'categories' && segments.length === 2
+          const isTag = segments[0] === 'tags' && segments.length === 2
+          const rssHref = isCategory
+            ? `/categories/${segments[1]}/rss.xml`
+            : isTag
+              ? `/tags/${segments[1]}/rss.xml`
+              : '/rss.xml'
+          return (
+            <Link href={rssHref} data-no-swup>
+              <i class="iconfont icon-rss" />
+              <span>RSS</span>
+            </Link>
+          )
+        })()
+      }
       <Link href="/sitemap-index.xml" data-no-swup>
         <i class="iconfont icon-treasure-map"></i>
         <span>站点地图</span>

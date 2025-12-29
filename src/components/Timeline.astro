@@ -46,7 +46,7 @@ const groupedPosts = posts.reduce<
               </span>
               <a
                 class="hover:text-accent/80 hover:underline underline-offset-2"
-                href={post.data.url?post.data.url:`/posts/${post.slug}`}
+                href={post.data.url ? post.data.url : `/posts/${post.slug}`}
               >
                 {post.data.title}
               </a>
