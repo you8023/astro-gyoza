@@ -36,7 +36,7 @@ const wordCountStr = (wordCount / 1000).toFixed(1) + 'k'
               ? `/tags/${segments[1]}/rss.xml`
               : '/rss.xml'
           return (
-            <Link href={rssHref} data-no-swup>
+            <Link href={rssHref} id="footer-rss-link" data-no-swup>
               <i class="iconfont icon-rss" />
               <span>RSS</span>
             </Link>
@@ -58,3 +58,22 @@ const wordCountStr = (wordCount / 1000).toFixed(1) + 'k'
     <ThemeSwitch client:only="react" />
   </div>
 </footer>
+<script>
+  function updateFooterRSS() {
+    const path = window.location.pathname.replace(/\/+$/, '')
+    const segments = path.split('/').filter(Boolean)
+    const isCategory = segments[0] === 'categories' && segments.length === 2
+    const isTag = segments[0] === 'tags' && segments.length === 2
+    const rssHref = isCategory
+      ? `/categories/${segments[1]}/rss.xml`
+      : isTag
+        ? `/tags/${segments[1]}/rss.xml`
+        : '/rss.xml'
+    const link = document.getElementById('footer-rss-link')
+    if (link) {
+      link.setAttribute('href', rssHref)
+    }
+  }
+  updateFooterRSS()
+  document.addEventListener('swup:content:replace', updateFooterRSS)
+</script>
